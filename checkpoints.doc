@@ -1,0 +1,430 @@
+21-05-26
+PS C:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA> (Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned) ; (& "c:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA\sklearn-env\Scripts\Activate.ps1")
+(sklearn-env) PS C:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA> & "c:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA\sklearn-env\Scripts\python.exe" "c:/Users/saswa/OneDrive/Desktop/Final Year Research/HyPSA/data_pipeline.py"
+Loading weak passwords...
+Extracting word pool...
+Generating tricky weak passwords...
+Generating medium passwords...
+Generating strong passwords...
+Class Distrbution: Counter({0: 35000, 1: 35000, 2: 35000})
+Dataset ready!
+Shape: (105000, 6)
+(sklearn-env) PS C:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA> & "c:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA\sklearn-env\Scripts\python.exe" "c:/Users/saswa/OneDrive/Desktop/Final Year Research/HyPSA/freezeDataset.py"
+
+[INFO] Building final fixed dataset...
+Loading weak passwords...
+Extracting word pool...
+Generating tricky weak passwords...
+Generating medium passwords...
+Generating strong passwords...
+Class Distrbution: Counter({0: 35000, 1: 35000, 2: 35000})
+Dataset ready!
+Shape: (105000, 6)
+
+====================================
+Dataset Frozen Successfully
+====================================
+
+Saved to:
+c:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA\datasets\fixed_password_dataset.csv
+
+Shape: (105000, 7)
+(sklearn-env) PS C:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA> & "c:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA\sklearn-env\Scripts\python.exe" "c:/Users/saswa/OneDrive/Desktop/Final Year Research/HyPSA/model.py"
+
+====================================
+Loading Fixed Frozen Dataset...
+====================================
+
+Dataset Loaded Successfully
+Shape: (105000, 7)
+
+Training Logistic Regression...
+Training Random Forest...
+Training XGBoost...
+
+====================================
+Feature Importance (Random Forest)
+====================================
+length: 0.3970
+maxRepetition: 0.1306
+shannonEntropy: 0.2340
+sequenceCount: 0.0293
+dictionaryScore: 0.1748
+keyboardScore: 0.0343
+Feature importance plot saved.
+Logistic Regression confusion matrix saved.
+
+====================================
+Logistic Regression
+====================================
+Accuracy: 0.7131428571428572
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.63      0.75      0.68      7000
+           1       0.61      0.44      0.51      7000
+           2       0.88      0.95      0.91      7000
+
+    accuracy                           0.71     21000
+   macro avg       0.71      0.71      0.70     21000
+weighted avg       0.71      0.71      0.70     21000
+
+Confusion Matrix:
+ [[5223 1646  131]
+ [3126 3106  768]
+ [   3  350 6647]]
+Random Forest confusion matrix saved.
+
+====================================
+Random Forest
+====================================
+Accuracy: 0.854904761904762
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.92      0.72      0.81      7000
+           1       0.74      0.89      0.81      7000
+           2       0.95      0.95      0.95      7000
+
+    accuracy                           0.85     21000
+   macro avg       0.87      0.85      0.85     21000
+weighted avg       0.87      0.85      0.85     21000
+
+Confusion Matrix:
+ [[5064 1897   39]
+ [ 418 6241  341]
+ [  25  327 6648]]
+XGBoost confusion matrix saved.
+
+====================================
+XGBoost
+====================================
+Accuracy: 0.8417142857142857
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.91      0.71      0.80      7000
+           1       0.73      0.85      0.79      7000
+           2       0.91      0.96      0.94      7000
+
+    accuracy                           0.84     21000
+   macro avg       0.85      0.84      0.84     21000
+weighted avg       0.85      0.84      0.84     21000
+
+Confusion Matrix:
+ [[4979 1918  103]
+ [ 482 5984  534]
+ [   7  280 6713]]
+
+====================================
+Models Saved Successfully
+====================================
+(sklearn-env) PS C:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA> 
+----------------------------------
+hyperparameter tuning:
+PS C:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA> (Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned) ; (& "c:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA\sklearn-env\Scripts\Activate.ps1")
+(sklearn-env) PS C:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA> & "c:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA\sklearn-env\Scripts\python.exe" "c:/Users/saswa/OneDrive/Desktop/Final Year Research/HyPSA/hyperparameterTuning.py"
+
+====================================
+Loading Fixed Dataset...
+====================================
+Dataset Shape: (105000, 7)
+
+Training Logistic Regression...
+Training Random Forest...
+Training XGBoost...
+C:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA\sklearn-env\Lib\site-packages\xgboost\training.py:200: UserWarning: [16:59:48] WARNING: C:\actions-runner\_work\xgboost\xgboost\src\learner.cc:782: 
+Parameters: { "use_label_encoder" } are not used.
+
+  bst.update(dtrain, iteration=i, fobj=obj)
+
+Generating Weight Combinations...
+Total Combinations: 66
+
+====================================
+Running Ensemble Weight Tuning...
+====================================
+
+====================================
+TUNING COMPLETED
+====================================
+
+Best Weight Combination:
+LR  : 0.0
+RF  : 0.30000000000000004
+XGB : 0.7000000000000001
+
+Best F1 Score: 0.847721
+
+Results saved to:
+c:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA\hyperparameterTuning\ensemble_weight_tuning_results.csv
+
+Top 10 Results:
+
+    LR Weight  RF Weight  XGB Weight  Accuracy  Precision    Recall  F1 Score
+3         0.0        0.3         0.7  0.847952   0.865385  0.847952  0.847721
+11        0.1        0.0         0.9  0.847667   0.863040  0.847667  0.847553
+2         0.0        0.2         0.8  0.847714   0.864117  0.847714  0.847484
+4         0.0        0.4         0.6  0.847381   0.865751  0.847381  0.847097
+0         0.0        0.0         1.0  0.847048   0.858432  0.847048  0.847071
+12        0.1        0.1         0.8  0.847286   0.863090  0.847286  0.847055
+13        0.1        0.2         0.7  0.847143   0.863655  0.847143  0.846884
+14        0.1        0.3         0.6  0.846905   0.864540  0.846905  0.846568
+1         0.0        0.1         0.9  0.846571   0.859339  0.846571  0.846543
+5         0.0        0.5         0.5  0.846857   0.865432  0.846857  0.846523
+(sklearn-env) PS C:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA> 
+-------------------------
+model_ablation_studies.py
+PS C:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA> (Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned) ; (& "c:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA\sklearn-env\Scripts\Activate.ps1")
+(sklearn-env) PS C:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA> & "c:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA\sklearn-env\Scripts\python.exe" "c:/Users/saswa/OneDrive/Desktop/Final Year Research/HyPSA/model_ablation_studies.py"
+
+====================================
+Loading Fixed Frozen Dataset...
+====================================
+
+Dataset Loaded Successfully
+Shape: (105000, 7)
+
+====================================
+Running Ensemble Learning Ablation Study
+====================================
+
+Running Single Model: Logistic Regression
+Accuracy: 0.737429
+F1 Score: 0.737861
+
+Running Single Model: Random Forest
+Accuracy: 0.834810
+F1 Score: 0.833484
+
+Running Single Model: XGBoost
+C:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA\sklearn-env\Lib\site-packages\xgboost\training.py:200: UserWarning: [17:03:41] WARNING: C:\actions-runner\_work\xgboost\xgboost\src\learner.cc:782: 
+Parameters: { "use_label_encoder" } are not used.
+
+  bst.update(dtrain, iteration=i, fobj=obj)
+Accuracy: 0.847048
+F1 Score: 0.847071
+
+Running Ensemble Model: LR + RF
+Accuracy: 0.826714
+F1 Score: 0.825033
+
+Running Ensemble Model: RF + XGBoost
+C:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA\sklearn-env\Lib\site-packages\xgboost\training.py:200: UserWarning: [17:03:49] WARNING: C:\actions-runner\_work\xgboost\xgboost\src\learner.cc:782: 
+Parameters: { "use_label_encoder" } are not used.
+
+  bst.update(dtrain, iteration=i, fobj=obj)
+Accuracy: 0.844810
+F1 Score: 0.844305
+
+Running Ensemble Model: LR + XGBoost
+C:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA\sklearn-env\Lib\site-packages\xgboost\training.py:200: UserWarning: [17:03:51] WARNING: C:\actions-runner\_work\xgboost\xgboost\src\learner.cc:782: 
+Parameters: { "use_label_encoder" } are not used.
+
+  bst.update(dtrain, iteration=i, fobj=obj)
+Accuracy: 0.839095
+F1 Score: 0.838651
+
+Running Ensemble Model: LR + RF + XGBoost
+C:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA\sklearn-env\Lib\site-packages\xgboost\training.py:200: UserWarning: [17:03:56] WARNING: C:\actions-runner\_work\xgboost\xgboost\src\learner.cc:782: 
+Parameters: { "use_label_encoder" } are not used.
+
+  bst.update(dtrain, iteration=i, fobj=obj)
+Accuracy: 0.844762
+F1 Score: 0.844404
+
+====================================
+Ensemble Learning Ablation Study Completed
+====================================
+
+            Experiment  Accuracy  F1 Score
+0  Logistic Regression  0.737429  0.737861
+1        Random Forest  0.834810  0.833484
+2              XGBoost  0.847048  0.847071
+3              LR + RF  0.826714  0.825033
+4         RF + XGBoost  0.844810  0.844305
+5         LR + XGBoost  0.839095  0.838651
+6    LR + RF + XGBoost  0.844762  0.844404
+
+Results saved to:
+c:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA\outputs\csv\model_ablation_results.csv
+(sklearn-env) PS C:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA> 
+-------------------------
+computational_cost_analysis.py
+PS C:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA> (Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned) ; (& "c:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA\sklearn-env\Scripts\Activate.ps1")
+(sklearn-env) PS C:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA> & "c:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA\sklearn-env\Scripts\python.exe" "c:/Users/saswa/OneDrive/Desktop/Final Year Research/HyPSA/computational_cost_analysis.py"
+
+====================================
+Loading Fixed Frozen Dataset...
+====================================
+
+Dataset Loaded Successfully
+Shape: (105000, 7)
+
+====================================
+Running Computational Cost Analysis
+====================================
+
+Running: Logistic Regression
+
+====================================
+Loading Fixed Frozen Dataset...
+====================================
+
+Dataset Loaded Successfully
+Shape: (105000, 7)
+
+Running: Random Forest
+
+====================================
+Loading Fixed Frozen Dataset...
+====================================
+
+Dataset Loaded Successfully
+Shape: (105000, 7)
+
+Running: XGBoost
+
+====================================
+Loading Fixed Frozen Dataset...
+====================================
+
+Dataset Loaded Successfully
+Shape: (105000, 7)
+C:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA\sklearn-env\Lib\site-packages\xgboost\training.py:200: UserWarning: [17:08:38] WARNING: C:\actions-runner\_work\xgboost\xgboost\src\learner.cc:782: 
+Parameters: { "use_label_encoder" } are not used.
+
+  bst.update(dtrain, iteration=i, fobj=obj)
+
+CSV Saved Successfully
+c:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA\outputs\csv\computational_cost_summary.csv
+Saved: c:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA\outputs\plots\training_time_plot.png
+Saved: c:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA\outputs\plots\inference_time_plot.png
+Saved: c:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA\outputs\plots\memory_usage_plot.png
+Saved: c:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA\outputs\plots\cpu_usage_plot.png
+Saved: c:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA\outputs\plots\accuracy_plot.png
+
+====================================
+Final Results
+====================================
+
+                 Model  Training Time (s)  Inference Time (s)  ...  Peak Memory (MB)  CPU Usage (%)  Accuracy
+0  Logistic Regression           3.799558            0.004006  ...        196.246094           6.45  0.737429
+1        Random Forest           4.839416            0.139921  ...        200.285156          10.40  0.834810
+2              XGBoost           3.726895            0.028769  ...        206.367188          16.95  0.847048
+
+[3 rows x 7 columns]
+(sklearn-env) PS C:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA> 
+-------------
+feature_analysis.py:
+PS C:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA> (Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned) ; (& "c:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA\sklearn-env\Scripts\Activate.ps1")
+(sklearn-env) PS C:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA> & "c:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA\sklearn-env\Scripts\python.exe" "c:/Users/saswa/OneDrive/Desktop/Final Year Research/HyPSA/analysis/feature_analysis.py"
+
+====================================
+Loading Fixed Dataset...
+====================================
+
+[INFO] Dataset Loaded Successfully
+[INFO] Dataset Shape: (105000, 7)
+
+[INFO] Missing Values:
+length             0
+maxRepetition      0
+shannonEntropy     0
+sequenceCount      0
+dictionaryScore    0
+keyboardScore      0
+label              0
+dtype: int64
+
+[INFO] First 5 Rows:
+   length  maxRepetition  shannonEntropy  sequenceCount  dictionaryScore  keyboardScore  label
+0   0.375       0.333333        0.479025            0.0              1.0            0.0      0
+1   0.375       0.333333        0.477121            0.0              1.0            0.0      0
+2   0.375       0.333333        0.435525            0.0              1.0            0.0      0
+3   0.375       0.333333        0.577465            1.0              1.0            1.0      0
+4   0.500       0.250000        0.531923            0.0              1.0            0.0      0
+
+[INFO] Features:
+['length', 'maxRepetition', 'shannonEntropy', 'sequenceCount', 'dictionaryScore', 'keyboardScore']
+
+[INFO] Train Shape: (84000, 6)
+[INFO] Test Shape: (21000, 6)
+
+====================================
+Running Random Forest Feature Importance
+====================================
+
+Random Forest Feature Importance:
+
+           Feature  RF Importance  RF Importance (%)  Rank
+0           length       0.396976          39.697557     1
+2   shannonEntropy       0.233990          23.398976     2
+4  dictionaryScore       0.174801          17.480114     3
+1    maxRepetition       0.130608          13.060802     4
+5    keyboardScore       0.034347           3.434745     5
+3    sequenceCount       0.029278           2.927806     6
+
+Top Features (Random Forest):
+           Feature  RF Importance  RF Importance (%)  Rank
+0           length       0.396976          39.697557     1
+2   shannonEntropy       0.233990          23.398976     2
+4  dictionaryScore       0.174801          17.480114     3
+1    maxRepetition       0.130608          13.060802     4
+5    keyboardScore       0.034347           3.434745     5
+3    sequenceCount       0.029278           2.927806     6
+
+====================================
+Running Mutual Information Analysis
+====================================
+
+Mutual Information Scores:
+
+           Feature  MI Score  Rank
+2   shannonEntropy  0.755309     1
+0           length  0.535194     2
+1    maxRepetition  0.390985     3
+4  dictionaryScore  0.308812     4
+5    keyboardScore  0.071276     5
+3    sequenceCount  0.062946     6
+
+Top Features (Mutual Information):
+           Feature  MI Score  Rank
+2   shannonEntropy  0.755309     1
+0           length  0.535194     2
+1    maxRepetition  0.390985     3
+4  dictionaryScore  0.308812     4
+5    keyboardScore  0.071276     5
+3    sequenceCount  0.062946     6
+
+====================================
+Common Top Features
+====================================
+{'keyboardScore', 'dictionaryScore', 'maxRepetition', 'shannonEntropy', 'sequenceCount', 'length'}
+
+====================================
+Feature Analysis Completed
+====================================
+
+[INFO] RF Importance Saved To:
+c:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA\outputs\analysis\rf_importance.csv
+
+[INFO] MI Scores Saved To:
+c:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA\outputs\analysis\mi_scores.csv
+(sklearn-env) PS C:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA> 
+----------------------
+correlation_analysis.py:
+(sklearn-env) PS C:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA> & "c:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA\sklearn-env\Scripts\python.exe" "c:/Users/saswa/OneDrive/Desktop/Final Year Research/HyPSA/analysis/correlation_analysis.py"
+
+Correlation Matrix:
+                    length  maxRepetition  shannonEntropy  sequenceCount  dictionaryScore  keyboardScore
+length           1.000000      -0.561336        0.407714      -0.098790        -0.563560      -0.132809
+maxRepetition   -0.561336       1.000000       -0.563472       0.036987         0.300964       0.007537
+shannonEntropy   0.407714      -0.563472        1.000000       0.001309        -0.276192      -0.029674
+sequenceCount   -0.098790       0.036987        0.001309       1.000000         0.099790       0.374984
+dictionaryScore -0.563560       0.300964       -0.276192       0.099790         1.000000       0.104302
+keyboardScore   -0.132809       0.007537       -0.029674       0.374984         0.104302       1.000000
+(sklearn-env) PS C:\Users\saswa\OneDrive\Desktop\Final Year Research\HyPSA> 

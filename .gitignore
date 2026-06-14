@@ -1,0 +1,40 @@
+# Virtual environments
+sklearn-env/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Editor
+.vscode/
+.idea/
+
+# Data (large datasets excluded, models are kept)
+datasets/
+
+# Outputs & analysis
+results/
+outputs/
+analysis/
+interim_report/
+
+# Logs & temp
+*.log
+*.tmp
+
+# Env variables
+.env
+
+# Misc
+LR_limitationForMedium.txt
+hyperparameterTuning/
