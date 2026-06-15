@@ -19,8 +19,10 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Data (large datasets excluded, models are kept)
-datasets/
+# Data (large raw datasets excluded; required runtime CSV is kept)
+datasets/rockyou*
+datasets/*.txt
+datasets/fixed_password_dataset.csv
 
 # Outputs & analysis
 results/

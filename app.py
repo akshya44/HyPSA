@@ -54,7 +54,7 @@ if not FEATURES_MODULE_AVAILABLE:
     st.info(f"**Error details**: {FEATURES_IMPORT_ERROR}")
     st.markdown("""
         ### How to fix:
-        1. Make sure you are in the project folder: `c:\\Users\\HP\\OneDrive\\Documents\\8TH SEM\\FYRP\\HyPSA-main`
+        1. Make sure you are running from the **project root directory** (the folder containing `app.py`)
         2. Verify that **RapidFuzz** is installed: `pip install rapidfuzz`
         3. Make sure the `datasets` folder exists with `10000_common_passwords.csv`.
     """)
