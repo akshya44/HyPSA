@@ -4,6 +4,8 @@
 
 **A multi-layer hybrid framework for password strength estimation combining Shannon Entropy, Ensemble Machine Learning, and Rule-Based Fallback Penalties.**
 
+[![Live Demo](https://img.shields.io/badge/🚀%20Live%20Demo-hypsaa.streamlit.app-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://hypsaa.streamlit.app/)
+
 [![Python](https://img.shields.io/badge/Python-3.9%2B-blue?logo=python&logoColor=white)](https://python.org)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.50-FF4B4B?logo=streamlit&logoColor=white)](https://streamlit.io)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-1.6.1-F7931E?logo=scikit-learn&logoColor=white)](https://scikit-learn.org)
@@ -207,9 +209,17 @@ pip install -r requirements.txt
 
 ---
 
-## 🚀 How to Run
+## 🌐 Live Demo
 
-### ▶️ Option 1 — Launch the Streamlit Web App (Recommended)
+> **Try it instantly — no installation required:**
+>
+> ### 👉 [https://hypsaa.streamlit.app/](https://hypsaa.streamlit.app/)
+
+---
+
+## 🚀 How to Run Locally
+
+### ▶️ Option 1 — Launch the Streamlit Web App
 
 The pre-trained models are already included in the `models/` folder. Just run:
 
